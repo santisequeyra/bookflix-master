@@ -1,0 +1,62 @@
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ayuda - Grupo 19</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.ts"></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+      <!-- HEADER -->
+      <header>
+        <div class="BookflixLogo">
+          <a id="logo"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+        </div>
+      </header>
+
+       <!-- END OF HEADER -->
+
+        <h1>Trailers para: {{book.title}}</h1>
+        <div *ngIf="trailers[0]!=undefined">
+        <table>
+          <thead>
+            <tr>
+              <th>Tapa</th>
+              <th></th>
+              <th>Trailers</th>
+            </tr>
+          </thead>
+          <tbody>
+
+        <td ><img *ngIf="hasCover" src="http://localhost:3000/api/files/downloads/cover/{{book._id}}" /></td>
+        <td ><img *ngIf="!hasCover" src="../../assets/notCover.png" /></td>
+        <td><tr *ngFor="let trailer of book.trailers; index as i" >
+          <h4 style="text-align: center;font-size: x-large;">--{{book.trailers[i].title}}--</h4>
+          <h4 style="text-align: center;" *ngIf="(book.trailers[i].description!=='')" >{{book.trailers[i].description}}</h4>
+          <h4 style="text-align: center;font-size: smaller;" *ngIf="(book.trailers[i].description=='')">(No hay descripción para este trailer) </h4>
+          <h4 style="text-align: center;">______________________</h4>
+        </tr>
+      </td>
+      </tbody>
+        </table>
+      </div>
+      <h3 *ngIf="trailers[0]==undefined"> No hay elementos para mostrar</h3>
+-----<br>
+          <a style="color:#f2f2f2; cursor: pointer; text-decoration:underline" (click)="goBack()">Volver</a>
+
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p> static void ® - Grupo 19</p>
+        <p>Ing. Software 2 - UNLP - 2020</p>
+      </footer>
+    </div>
+  </body>
+  </html>

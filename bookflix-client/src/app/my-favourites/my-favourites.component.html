@@ -1,0 +1,112 @@
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bookflix - Grupo 19</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+          integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9"
+          crossorigin="anonymous"></script>
+  <script src="src/main.ts"></script>
+</head>
+<body>
+<div class="wrapper">
+
+
+  <!-- HEADER -->
+  <header>
+    <div class="BookflixLogo">
+      <a id="logo" href="home"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+    </div>
+    <nav class="main-nav">
+      <a href="home" title="Home">Home</a>
+      <a>|</a>
+      <a href="favourites" title="Tus favoritos">Favoritos</a>
+      <a>|</a>
+      <a href="news" title="Últimas novedades">Novedades</a>
+    </nav>
+    <nav class="sub-nav">
+      <a href="profiles2" title="Cambiar perfil">Cambiar perfil</a>
+      <a>|</a>
+      <a href="search" title="Búsqueda">Búsqueda</a>
+      <a>|</a>
+      <a href="account" title="Configuración del perfil">{{profileName}}</a>
+    </nav>
+  </header>
+
+  <!-- END OF HEADER -->
+
+  <!-- MAIN CONTAINER -->
+  <section class="main-container">
+    <div class="location" id="home">
+      <h1 id="home">Tus favoritos</h1>
+      <div *ngIf="!vacio">
+        <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Portada:</th>
+                  <th scope="col">Libro: </th>
+                  <th scope="col">Datos</th>
+                  <th scope="col">Eliminar favorito</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let b of favourites; index as i">
+                  <td> <a *ngIf="(b.cover!==null)"> <img src="http://localhost:3000/api/files/downloads/cover/{{b._id}}"/> </a><a *ngIf="(b.cover==null)"> <img src="../../assets/notCover.png"/> </a></td>
+                  <td> <a style="color:#f2f2f2" >{{b.title}}</a></td>
+                  <td>
+                    <a style="color:#f2f2f2" >ISBN: {{b.isbn}}</a><br>
+                    <a style="color:#f2f2f2" >Autor: {{b.author.name}}</a><br>
+                    <a style="color:#f2f2f2" >Género: {{b.genre.name}}</a><br>
+                    <a style="color:#f2f2f2" >Editorial: {{b.publisher.name}}</a><br>
+
+
+
+                  </td>
+                  <td><a (click)="toggleFavourite(b._id)" style="color:#f2f2f2;text-decoration: underline;cursor: pointer;" > Eliminar</a></td>
+
+                </tr>
+              </tbody>
+          </table>
+      </div>
+      <div *ngIf="vacio">
+        <h3>No hay favoritos para mostrar</h3>
+      </div>
+      <br><br>-----<br>
+          <a (click)="goBack()" style="color:#f2f2f2;text-decoration: underline;cursor: pointer;">Volver</a>
+
+
+    <!-- END OF MAIN CONTAINER -->
+
+    <!-- LINKS -->
+    <section class="link">
+      <div class="logos">
+        <a href="http://www.facebook.com"><i class="fab fa-facebook-square fa-2x logo"></i></a>
+        <a href="http://www.instagram.com"><i class="fab fa-instagram fa-2x logo"></i></a>
+        <a href="http://www.twitter.com"><i class="fab fa-twitter fa-2x logo"></i></a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fab fa-youtube fa-2x logo"></i></a>
+      </div>
+      <div class="sub-links">
+        <ul>
+          <li><a href="contactus">Contáctanos</a></li>
+          <li><a href="terms">Términos de uso</a></li>
+          <li><a href="help">Ayuda</a></li>
+          <li><a href="https://ideas.info.unlp.edu.ar">Cátedra Ingeniería</a></li>
+          <li><a href="https://github.com/agustin-chavez/bookflix">Grupo 19 (repo on github)</a></li>
+          <li><a href="#">Agustín Chavez</a></li>
+          <li><a href="#">Lautaro Molina</a></li>
+          <li><a href="#">Santiago Sequeyra</a></li>
+
+        </ul>
+      </div>
+    </section>
+    <!-- END OF LINKS -->
+
+    <!-- FOOTER -->
+    <footer>
+      <p> static void ® - Grupo 19</p>
+      <p>Ing. Software 2 - UNLP - 2020</p>
+    </footer>
+
+
+    <router-outlet></router-outlet>

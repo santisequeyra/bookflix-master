@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ayuda - Grupo 19</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.ts"></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+      <!-- HEADER -->
+      <header>
+        <div class="BookflixLogo">
+          <a id="logo"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+        </div>
+      </header>
+       <!-- END OF HEADER -->
+        <h1>Capítulos de: {{book.title}}</h1>
+        <a style="text-decoration:underline;cursor: pointer;color:#f2f2f2" *ngIf="!book.complete||book.file[0]==undefined"(click)="uploadFile(book._id,book.file.length)">Subir archivo</a>
+        <div *ngIf="!selected">
+          <div *ngIf="hasFiles">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col"><a *ngIf="!book.complete">Capítulo:</a><a *ngIf="book.complete">-</a></th>
+                  <th scope="col" maxlength="300px">Fecha de Lanzamiento</th>
+                  <th scope="col">Fecha de Vencimiento</th>
+                  <th scope="col">Modificar fechas</th>
+                  <th scope="col">Borrar</th>
+                </tr>
+              </thead>
+              <tbody >
+                <tr *ngFor="let file of book.file; index as i">
+                  <td> <a *ngIf="!book.complete" style="color:#f2f2f2" >{{file.chapternumber}}</a><a *ngIf="book.complete">-</a></td>
+                  <td> <a style="color:#f2f2f2" >{{file.release.toString().substr(0,10)}}</a></td>
+                  <td> <a style="color:#f2f2f2" >{{file.concealment.toString().substr(0,10)}}</a></td>
+                  <td style="cursor: pointer"><a style="color:#f2f2f2" style="text-decoration:underline"(click)="changeDates(file._id,file.fileId,file.chapternumber,file.release,file.concealment)">Modificar fechas</a></td>
+                  <td style="cursor: pointer"><a style="color:#f2f2f2" style="text-decoration:underline"(click)="deleteFile(file._id)">Borrar</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div *ngIf="!hasFiles">
+            <h3>No hay archivos para el libro seleccionado.</h3>
+          </div>
+        </div>
+        <div *ngIf="selected">
+  <a>Modificando capítulo {{chapterNumber}}</a>
+  <form [formGroup]="form_upload" (ngSubmit)="onChange(form_upload)">
+    <label for="release">Fecha de lanzamiento: </label>
+    <input type="date" accept=".pdf" id="release" formControlName="release" placeholder="Fecha de lanzamiento"><br>
+    <label for="concealment">Fecha de vencimiento: </label>
+    <input type="date" accept=".pdf" id="concealment" formControlName="concealment" placeholder="Fecha de vencimiento"><br>
+    <div [hidden]="!form_upload.controls['concealment'].hasError('invalid')" class="alert alert-danger" style="color:red">
+      La fecha de vencimiento debe ser posterior a la fecha de lanzamiento.
+   </div>
+    <label for="chapternumber">Capítulo Nº: </label>
+    <input type="number" id="chapternumber" formControlName="chapternumber" placeholder="Número de capítulo"><br>
+
+  <button [disabled]="!form_upload.valid">
+    Cambiar fechas
+  </button><br>  <a style="color:#f2f2f2" style="text-decoration:underline;cursor: pointer;" (click)="cancel()">Cancelar</a><br>
+
+  </form>
+</div>
+<br><br>-----<br>
+          <a href="adminpanel" style="color:#f2f2f2">Volver</a>
+
+
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p> static void ® - Grupo 19</p>
+        <p>Ing. Software 2 - UNLP - 2020</p>
+      </footer>
+    </div>
+  </body>
+  </html>

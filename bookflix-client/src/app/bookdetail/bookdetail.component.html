@@ -1,0 +1,110 @@
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bookflix - Grupo 19</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+          integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9"
+          crossorigin="anonymous"></script>
+  <script src="src/main.ts"></script>
+</head>
+<body>
+<div class="wrapper">
+
+
+  <!-- HEADER -->
+  <header>
+    <div class="BookflixLogo">
+      <a id="logo" href="home"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+    </div>
+    <nav class="main-nav">
+      <a href="home" title="Home">Home</a>
+      <a href="favourites" title="Tus favoritos">Favoritos</a>
+      <a href="news" title="Últimas novedades">Novedades</a>
+      <a target="_blank" href="https://unlp.edu.ar/" title="Página oficial UNLP">UNLP</a>
+    </nav>
+    <nav class="sub-nav">
+      <a href="search" title="Búsqueda">Búsqueda</a>
+      <a href="account" title="Configuración del perfil">Cuenta</a>
+    </nav>
+  </header>
+  <h1>Detalles del libro</h1>
+<br>
+<br>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Detalles</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img *ngIf="hasCover" src="http://localhost:3000/api/files/downloads/cover/{{book._id}}" /><img *ngIf="!hasCover" src="../../assets/notCover.png" /></td>
+          <td><h4> Título: {{book.title}} </h4>
+            <h4> ISBN: {{book.isbn}} </h4>
+            <h4> Editorial: {{book.publisher.name}}</h4>
+            <h4> Autor: {{book.author.name}}</h4>
+            <h4> Género: {{book.genre.name}}</h4>
+            <h4 *ngIf="rating>0"> Puntaje: {{rating}}/5</h4>
+            <h4 *ngIf="rating==0">Puntaje: -/-</h4>
+          </td>
+          <td>
+            <h4 *ngIf="isfavourite" style="cursor: pointer;text-decoration: underline;" (click)="toggleFavourite()"><img src="../../assets/unfavorite.png"> Desmarcar como favorito </h4>
+            <h4 *ngIf="!isfavourite" style="cursor: pointer;text-decoration: underline;" (click)="toggleFavourite()"><img src="../../assets/favorite.png"> Marcar como favorito </h4>
+            <h4 *ngIf="!reviewed&&read" style="cursor: pointer;text-decoration: underline;" (click)="addReview()"><img src="../../assets/star.png"> Escribir reseña</h4>
+            <h4 *ngIf="!reviewed&&!read">Termina la lectura para escribir una reseña</h4>
+          </td>
+    </tr>
+</tbody>
+</table>
+    <div *ngIf="available&&hasFiles">
+      <a style="color:#f2f2f2; cursor: pointer" (click)="readBook()" *ngIf="book.complete&&currentPage==0">⏵︎ Leer Nuevamente </a>
+      <a style="color:#f2f2f2; cursor: pointer" (click)="readBook()" *ngIf="(book.complete&&(currentPage>0||currentPage==undefined))">⏵︎ Leer libro completo </a>
+      <a style="color:#f2f2f2; cursor: pointer" (click)="chapterList()" *ngIf="!book.complete&&currentPage==0">⏵︎ Leer Nuevamente </a>
+      <a style="color:#f2f2f2; cursor: pointer" (click)="chapterList()" *ngIf="(!book.complete&&(currentPage>0||currentPage==undefined))">⏵︎ Leer Capítulos</a><br><br>
+
+   </div>
+   <a style="color:#f2f2f2;cursor: pointer" *ngIf="(book.trailers[0]!==undefined)&&(book.trailers[0]!==null)" (click)="seeTrailers()">⏵︎ Ver trailers</a><br>
+   <a style="color:#f2f2f2;cursor: pointer" *ngIf="(book.reviews[0]!==undefined)&&(book.reviews[0]!==null)"(click)="seeReviews()">⏵︎ Ver Reviews </a>
+   <br><br>
+   <div *ngIf="!hasFiles"> El libro aún no se encuentra disponible. Regresa pronto!</div>
+
+  </div>
+     -----<br>
+     <a href="home" style="color:#f2f2f2">Volver</a>
+  <!-- LINKS -->
+  <section class="link">
+    <div class="logos">
+      <a href="http://www.facebook.com"><i class="fab fa-facebook-square fa-2x logo"></i></a>
+      <a href="http://www.instagram.com"><i class="fab fa-instagram fa-2x logo"></i></a>
+      <a href="http://www.twitter.com"><i class="fab fa-twitter fa-2x logo"></i></a>
+      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fab fa-youtube fa-2x logo"></i></a>
+    </div>
+    <div class="sub-links">
+      <ul>
+        <li><a href="contactus">Contáctanos</a></li>
+        <li><a href="terms">Términos de uso</a></li>
+        <li><a href="help">Ayuda</a></li>
+        <li><a href="https://ideas.info.unlp.edu.ar">Cátedra Ingeniería</a></li>
+        <li><a href="https://github.com/agustin-chavez/bookflix">Grupo 19 (repo on github)</a></li>
+        <li><a href="#">Agustín Chavez</a></li>
+        <li><a href="#">Lautaro Molina</a></li>
+        <li><a href="#">Santiago Sequeyra</a></li>
+
+      </ul>
+    </div>
+  </section>
+  <!-- END OF LINKS -->
+
+  <!-- FOOTER -->
+  <footer>
+    <p> static void ® - Grupo 19</p>
+    <p>Ing. Software 2 - UNLP - 2020</p>
+  </footer>
+
+
+  <router-outlet></router-outlet>

@@ -1,0 +1,90 @@
+<html>
+<!-- HEAD -->
+<head>
+
+  <title>Bookflix - Grupo 19</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<!-- HEADER -->
+
+<!-- BODY -->
+<body>
+
+<div class="login">
+  <div class="login-triangle"></div>
+  <h2 class="login-header">Bookflix - Grupo 19 Registro</h2>
+  <form class="login-container" [formGroup]="form" (ngSubmit)="onRegister(form)">
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="name" class="control-label">Nombre </label>
+        <input type="text" id="name" class="form-control" formControlName="name" placeholder="Nombre">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="email" class="control-label">Email </label>
+        <input type="text" id="email" class="form-control" formControlName="email" placeholder="Correo Electrónico" onkeyup="this.value = this.value.toLowerCase();">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="password" class="control-label">Contraseña </label>
+        <input type="password" id="password" class="form-control" minlength="8" formControlName="password"
+               placeholder="Mínimo 8 caracteres">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="creditcard" class="control-label">Tarjeta de crédito </label>
+        <input type="text" id="creditcard" class="form-control" formControlName="creditcard" minlength="16"
+               maxlength="16" placeholder="16 dígitos">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="expirationMonth" class="control-label">Fecha de vencimiento: </label>
+        <input type="text" id="expirationMonth" class="form-control" formControlName="expirationMonth" minlength="2"
+               maxlength="2" max="12" placeholder="MM">
+
+        <label for="expirationYear" class="control-label"></label>
+        <input type="text" id="expirationYear" class="form-control" formControlName="expirationYear" minlength="2"
+               maxlength="2" placeholder="AA">
+
+               <div [hidden]="!form.controls['expirationMonth'].hasError('invalid')" class="alert alert-danger" style="color:red">
+                La fecha de vencimiento no es válida.
+             </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-12">
+        <label for="ccv" class="control-label">ccv </label>
+        <input type="text" id="ccv" class="form-control" formControlName="ccv" minlength="3" maxlength="3"
+               placeholder="3 dígitos">
+      </div>
+    </div>
+
+    <!-- TODO: ACA HAY ERRORES -->
+
+    <button type="login input" class="btn btn-primary" [disabled]="!form.valid">
+      Registrarse!
+    </button>
+
+    <a href="/auth/login" title="login " style="text-decoration:none;" style="color:#686868"> >Ya tienes cuenta?
+      Logearse</a>
+      <div [hidden]="!form.controls['email'].hasError('invalid')" class="alert alert-danger" style="color:red">
+        El correo electrónico está en uso.
+     </div>
+  </form>
+</div>
+
+</body>
+
+</html>

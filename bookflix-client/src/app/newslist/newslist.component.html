@@ -1,0 +1,61 @@
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ayuda - Grupo 19</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.ts"></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+      <!-- HEADER -->
+      <header>
+        <div class="BookflixLogo">
+          <a id="logo"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+        </div>
+      </header>
+       <!-- END OF HEADER -->
+       <div>
+        <h1>Todas las novedades</h1>
+        (Click en el título para entrar al detalle)
+        <table class="table table-hover">
+<thead>
+  <tr>
+    <th scope="col">Titulo</th>
+    <th scope="col" maxlength="300px">Descripcion</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Modificar</th>
+    <th scope="col">Borrar</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let new of news; index as i">
+
+    <td style="cursor: pointer"><a style="color:#f2f2f2" (click)="detailNews(new._id)">{{new.title}}</a></td>
+    <td style="cursor: pointer"><a style="color:#f2f2f2" (click)="detailNews(new._id)">{{new.description}}</a></td>
+    <td style="cursor: pointer"><a style="color:#f2f2f2" (click)="detailNews(new._id)">{{new.date.toString().substr(0,10)}}</a></td>
+    <td style="cursor: pointer"><a style="color:#f2f2f2" style="text-decoration:underline" (click)="modifyNews(new._id,new.title,new.description)">Modificar</a></td>
+    <td style="cursor: pointer"><a style="color:#f2f2f2" style="text-decoration:underline"(click)="deleteNews(new._id)">Borrar</a></td>
+
+  </tr>
+</tbody>
+</table>
+-----<br>
+          <a href="adminpanel" style="color:#f2f2f2">Volver</a>
+
+     </div>
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p> static void ® - Grupo 19</p>
+        <p>Ing. Software 2 - UNLP - 2020</p>
+      </footer>
+    </div>
+  </body>
+  </html>

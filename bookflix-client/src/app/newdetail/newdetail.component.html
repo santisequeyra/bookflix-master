@@ -1,0 +1,42 @@
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ayuda - Grupo 19</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.ts"></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+      <!-- HEADER -->
+      <header>
+        <div class="BookflixLogo">
+          <a id="logo"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+        </div>
+      </header>
+       <!-- END OF HEADER -->
+       <div>
+        <h1>Detalle novedad</h1>
+        <h4 style="text-decoration:underline">Título de la novedad: </h4> {{news.title}}
+        <h4 style="text-decoration:underline">Cuerpo de la novedad: </h4> <p style="max-width: 800px;word-break:break-all;"> {{news.description}}</p>
+        <h4 style="text-decoration:underline" >Creado en: </h4>{{news.date.toString().substr(0,10)}}<br><br>
+
+-----<br>
+          <a href="newslist" style="color:#f2f2f2">Volver</a>
+
+     </div>
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p> static void ® - Grupo 19</p>
+        <p>Ing. Software 2 - UNLP - 2020</p>
+      </footer>
+    </div>
+  </body>
+  </html>

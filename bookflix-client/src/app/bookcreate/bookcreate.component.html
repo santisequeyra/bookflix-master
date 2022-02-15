@@ -1,0 +1,98 @@
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ayuda - Grupo 19</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.ts"></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+      <!-- HEADER -->
+      <header>
+        <div class="BookflixLogo">
+          <a id="logo" ><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+        </div>
+
+      </header>
+       <!-- END OF HEADER -->
+       <div>
+        <h1>Crear Libro</h1>
+        <form class="login-container" [formGroup]="form" (ngSubmit)="onCreate(form)">
+
+            <div class="form-group">
+            <div class="col-sm-12">
+              <label for="title">Título: </label>
+              <input type="text" id="title" class="form-control" formControlName="title" placeholder="Ingrese título">
+            </div>
+            </div>
+
+            <div class="form-group">
+            <div class="col-sm-12">
+              <label for="isbn">ISBN: </label>
+              <input type="text" id="isbn" class="form-control" formControlName="isbn" placeholder="Ingrese ISBN">
+            </div>
+            </div>
+
+            <div>
+              <label for="author">Autor: </label>
+              <select name="author"id="author" formControlName="author">
+                <option value="" selected disabled hidden>Elegir de la lista</option>
+                <option name="author"id="author" *ngFor="let author of authors; index as i" value={{author._id}}>{{author.name}}</option>
+              </select>
+            <a (click)="createAuthor()" style="color:#f2f2f2;text-decoration: underline;cursor: pointer;">Crear Autor</a>
+            </div>
+
+            <div>
+              <label for="genre">Género: </label>
+              <select name="genre"id="genre" formControlName="genre">
+                <option value="" selected disabled hidden>Elegir de la lista</option>
+                <option name="genre"id="genre"*ngFor="let genre of genres; index as i" value={{genre._id}}>{{genre.name}}</option>
+
+              </select>
+              <a (click)="createGenre()" style="color:#f2f2f2;text-decoration: underline;cursor: pointer;">Crear Género</a>
+            </div>
+
+            <div>
+              <label for="publisher">Editorial: </label>
+              <select name="publisher" id="publisher" formControlName="publisher" >
+                <option value="" selected disabled hidden>Elegir de la lista</option>
+                <option *ngFor="let publisher of publishers; index as i" value={{publisher._id}}>{{publisher.name}}</option>
+
+              </select>
+            <a (click)="createPublisher()" style="color:#f2f2f2;text-decoration: underline;cursor: pointer;">Crear Editorial</a>
+            </div>
+
+
+            <div>
+              <label for="complete" >Subida entera: </label>
+              <input formControlName="complete" type="checkbox"  name="complete" ng-true-value="1" ng-false-value="0" >
+            </div>
+
+            <div [hidden]="!form.controls['isbn'].hasError('invalid')" class="alert alert-danger" style="color:red">
+              Ya existe un libro con ese ISBN. Por favor, intente nuevamente.
+           </div>
+
+          <button type="login input" class="btn btn-primary" [disabled]="!form.valid">
+            Crear libro
+          </button><br>
+
+          <a (click)="goBack()" style="color:#f2f2f2;text-decoration: underline;cursor: pointer;">Cancelar</a>
+
+        </form>
+     </div>
+
+      <!-- FOOTER -->
+      <footer>
+        <p> static void ® - Grupo 19</p>
+        <p>Ing. Software 2 - UNLP - 2020</p>
+      </footer>
+    </div>
+  </body>
+
+  </html>

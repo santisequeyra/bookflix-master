@@ -1,0 +1,47 @@
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bookflix - Grupo 19</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+          integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9"
+          crossorigin="anonymous"></script>
+  <script src="src/main.ts"></script>
+</head>
+<body>
+<div class="wrapper">
+
+
+  <!-- HEADER -->
+  <header>
+    <div class="BookflixLogo">
+      <a id="logo" href="home"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+    </div>
+  </header>
+<div>
+
+
+   <body *ngIf="!finished">
+
+      <div >
+
+     <pdf-viewer [src]="pdf" [original-size]="true" [(page)]="pageVariable" [show-borders]="true"
+      ></pdf-viewer>
+    </div>
+
+  </body>
+
+
+
+
+<footer>
+  <a style="color:#f2f2f2;" *ngIf="!book.complete"> Leyendo capítulo {{thisChapter}}</a><br>
+  <span *ngFor="let chapter of book.file; index as i">
+    <span *ngIf="!book.complete" style="color:#f2f2f2;cursor:pointer;text-decoration:underline;" (click)="goto(i)" >{{chapter.chapternumber}}</span>
+    <span> - </span>
+  </span>
+  <a style="color:#f2f2f2;" *ngIf="book.complete">Fin del libro </a><br>
+  <a *ngIf="finished" style="color:#f2f2f2">Libro terminado. Espera los siguientes capítulos!</a><br>
+  <a style="color:#f2f2f2;text-decoration:underline;font-size:smaller;cursor:pointer;text-align:right;" (click)="goHome()">Volver a home </a>
+</footer>

@@ -1,0 +1,111 @@
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bookflix - Grupo 19</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+          integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9"
+          crossorigin="anonymous"></script>
+  <script src="src/main.ts"></script>
+</head>
+<body>
+<div class="wrapper">
+
+
+  <!-- HEADER -->
+  <header>
+    <div class="BookflixLogo">
+      <a id="logo" href="home"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+    </div>
+    <nav class="main-nav">
+      <a href="home" title="Home">Home</a>
+      <a>|</a>
+      <a href="favourites" title="Tus favoritos">Favoritos</a>
+      <a>|</a>
+      <a href="news" title="Últimas novedades">Novedades</a>
+    </nav>
+    <nav class="sub-nav">
+      <a href="profiles2" title="Cambiar perfil">Cambiar perfil</a>
+      <a>|</a>
+      <a href="search" title="Búsqueda">Búsqueda</a>
+      <a>|</a>
+      <a href="account" title="Configuración del perfil">{{profileName}}</a>
+    </nav>
+  </header>
+
+  <!-- END OF HEADER -->
+
+  <!-- MAIN CONTAINER -->
+  <section class="main-container">
+    <div class="location" id="home">
+      <h1 id="home">Popular en Bookflix</h1>
+      <div >
+        <th *ngFor="let b of books; index as i" >
+          <tr *ngIf="b.file[0]!==undefined" >
+            <th *ngIf="(b.file[0].release<date)&&(b.file[0].concealment>date)"  >
+              <tr class="zoom" *ngIf="(b.cover!==null)&&((b.file[0].release<date)&&(b.file[0].concealment>date))"> <img src="http://localhost:3000/api/files/downloads/cover/{{b._id}}" (click)="openBook(b._id)" /><span (click)="openBook(b._id)"><br>{{b.title}}</span></tr>
+              <tr class="zoom" *ngIf="(b.cover==null)&&((b.file[0].release<date)&&(b.file[0].concealment>date))"> <img src="../../assets/notCover.png" (click)="openBook(b._id)"/><span (click)="openBook(b._id)"><br>{{b.title}}</span> </tr>
+            </th>
+          </tr>
+        </th>
+      </div>
+
+      <h1 id="home">Libros leídos</h1>
+
+      <div *ngIf="user.account.profiles[profilenumber].readings[0]==undefined">
+        <h3>Aún no has leído nada. Inicia una nueva lectura!</h3>
+      </div>
+
+      <div  *ngIf="user.account.profiles[profilenumber].readings[0]!==undefined">
+        <th *ngFor="let reading of user.account.profiles[profilenumber].readings; index as i">
+          <tr class="zoom" *ngIf="(reading.book.cover!==null)&&reading.book.file[0]!==undefined"> <img src="http://localhost:3000/api/files/downloads/cover/{{user.account.profiles[profilenumber].readings[i].book._id}}" (click)="openBook(user.account.profiles[profilenumber].readings[i].book._id)" /><br></tr>
+          <tr class="zoom" *ngIf="(reading.book.cover==null)&&reading.book.file[0]!==undefined"> <img src="../../assets/notCover.png" (click)="openBook(user.account.profiles[profilenumber].readings[i].book._id)"/> <br> </tr>
+          <span *ngIf="reading.current_page!==0&&reading.book.file[0]!==undefined" >{{user.account.profiles[profilenumber].readings[i].book.title}}</span><br>
+          <span *ngIf="reading.current_page==0&&reading.book.file[0]!==undefined" style="text-decoration: line-through;">{{user.account.profiles[profilenumber].readings[i].book.title}}</span><br>
+          <a *ngIf="reading.current_page==0&&reading.book.file[0]!==undefined">Libro terminado! ✓</a>
+        </th>
+      </div>
+
+
+
+    </div>
+
+
+
+
+
+    <!-- END OF MAIN CONTAINER -->
+
+    <!-- LINKS -->
+    <section class="link">
+      <div class="logos">
+        <a href="http://www.facebook.com"><i class="fab fa-facebook-square fa-2x logo"></i></a>
+        <a href="http://www.instagram.com"><i class="fab fa-instagram fa-2x logo"></i></a>
+        <a href="http://www.twitter.com"><i class="fab fa-twitter fa-2x logo"></i></a>
+        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><i class="fab fa-youtube fa-2x logo"></i></a>
+      </div>
+      <div class="sub-links">
+        <ul>
+          <li><a href="contactus">Contáctanos</a></li>
+          <li><a href="terms">Términos de uso</a></li>
+          <li><a href="help">Ayuda</a></li>
+          <li><a href="https://ideas.info.unlp.edu.ar">Cátedra Ingeniería</a></li>
+          <li><a href="https://github.com/agustin-chavez/bookflix">Grupo 19 (repo on github)</a></li>
+          <li><a href="#">Agustín Chavez</a></li>
+          <li><a href="#">Lautaro Molina</a></li>
+          <li><a href="#">Santiago Sequeyra</a></li>
+
+        </ul>
+      </div>
+    </section>
+    <!-- END OF LINKS -->
+
+    <!-- FOOTER -->
+    <footer>
+      <p> static void ® - Grupo 19</p>
+      <p>Ing. Software 2 - UNLP - 2020</p>
+    </footer>
+
+
+    <router-outlet></router-outlet>

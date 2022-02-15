@@ -1,0 +1,87 @@
+
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ayuda - Grupo 19</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"
+          integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9"
+          crossorigin="anonymous"></script>
+  <script src="main.ts"></script>
+
+</head>
+
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <header>
+    <div class="BookflixLogo">
+      <a id="logo"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+    </div>
+
+  </header>
+       <!-- END OF HEADER -->
+       <div>
+        <h1>Configuración de administrador</h1>
+        <a style="color:#f2f2f2; font-size: larger;"> → </a><a href="searchadmin" title="Listado de libros" style="color:#f2f2f2; font-size: larger;">Búsqueda de libros admin</a>
+        <h2>Libros</h2>
+        <p>
+          <a href="booklist" title="Listado de libros" style="color:#f2f2f2">Obtener lista de libros</a>
+          -
+          <a (click)="bookInit()"  title="Crear Libro" style="color:#f2f2f2;text-decoration: underline;cursor: pointer;">Crear Libro</a>
+        </p>
+
+        <h2>Novedades</h2>
+        <p>
+          <a href="newslist" title="Listado de novedades" style="color:#f2f2f2">Obtener lista de novedades</a>
+          -
+          <a href="newscreate" title="Crear novedad" style="color:#f2f2f2">Crear novedad</a>
+
+        </p>
+        <h2>Trailers</h2>
+        <p>
+          <a href="trailerlist" title="Listado de trailers" style="color:#f2f2f2">Obtener lista de trailers</a>
+
+        </p>
+        <h2>Reviews</h2>
+        <p>
+          <a href="reviewslist" title="Listado de reviews" style="color:#f2f2f2">Obtener lista de reviews</a>
+        </p>
+        <h2>Géneros</h2>
+        <p>
+          <a href="genrecreate" title="Crear género" style="color:#f2f2f2">Crear género</a>
+           -
+          <a href="genredelete" title="Eliminar género" style="color:#f2f2f2">Eliminar género</a>
+        </p>
+
+        <h2>Autores</h2>
+        <p>
+          <a href="authorcreate" title="Crear autor" style="color:#f2f2f2">Crear autor</a>
+          -
+          <a href="authordelete" title="Eliminar autor" style="color:#f2f2f2">Eliminar autor</a>
+        </p>
+        <h2>Editoriales</h2>
+        <p>
+          <a href="publishercreate" title="Crear editorial" style="color:#f2f2f2">Crear editorial</a>
+          -
+          <a href="publisherdelete" title="Eliminar editorial" style="color:#f2f2f2">Eliminar editorial</a>
+        </p>
+        <h2>Métricas</h2>
+        <p>
+          <a href="topbooks" title="Libros más leídos" style="color:#f2f2f2">Libros más leídos</a>
+          -
+          <a href="createdaccounts" title="Mayor cantidad de usuarios" style="color:#f2f2f2">Usuarios registrados por tiempo</a>
+        </p>
+        <h2>Misc</h2>
+          <a href="/auth/login" onclick="localStorage.clear()" title="Desloguearse" style="color:#f2f2f2">LOGOUT</a>
+
+      </div>
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p> static void ® - Grupo 19</p>
+        <p>Ing. Software 2 - UNLP - 2020</p>
+      </footer>
+    </div>
+

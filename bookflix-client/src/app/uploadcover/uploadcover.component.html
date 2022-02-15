@@ -1,0 +1,51 @@
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ayuda - Grupo 19</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.ts"></script>
+  </head>
+  <script >
+
+
+  </script>
+
+  <body>
+    <div class="wrapper">
+
+      <!-- HEADER -->
+      <header>
+        <div class="BookflixLogo">
+          <a id="logo"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+        </div>
+
+      </header>
+       <!-- END OF HEADER -->
+       <div>
+        <h1>Subir portada</h1>
+        <form class="login-container" [formGroup]="form" (ngSubmit)="onCreate(form)">
+          <label for="cover">Subir portada</label>
+          <input type="file" accept="image/*" id="cover" formControlName="cover" placeholder="Ingrese un archivo de imágen." (change)="changestring()">
+
+          <button [disabled]="!form.valid">
+            Subir archivo
+          </button><br>
+          <small style="color: red;" *ngIf="(form.controls.cover.errors)&&(selected)">Por favor, seleccione un archivo de imágen válido. (.jpg; .png; .bmp)</small><br>
+
+         <a (click)="goBack()" style="color:#f2f2f2;text-decoration: underline;cursor: pointer;">Volver</a>
+
+        </form>
+     </div>
+
+      <!-- FOOTER -->
+      <footer>
+        <p> static void ® - Grupo 19</p>
+        <p>Ing. Software 2 - UNLP - 2020</p>
+      </footer>
+    </div>
+  </body>
+  </html>

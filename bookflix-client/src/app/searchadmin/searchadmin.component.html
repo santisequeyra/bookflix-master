@@ -1,0 +1,92 @@
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ayuda - Grupo 19</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.ts"></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+      <!-- HEADER -->
+      <header>
+        <div class="BookflixLogo">
+          <a id="logo"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+        </div>
+      </header>
+      <h1>Búsqueda</h1>
+       <!-- END OF HEADER -->
+       <div *ngIf="!searched" >
+
+        <form class="login-container" [formGroup]="form" (ngSubmit)="onSearch(form)">
+          Ingrese en los siguientes campos para buscar (mín. 2 caracteres)<br><br>
+          <label for="search" style="font-weight: bold;">Título: </label>
+          <input type="text" id="title" formControlName="title" placeholder="Ingrese Título"><br>
+          <label for="search" style="font-weight: bold;">Autor: </label>
+          <input type="text" id="author" formControlName="author" placeholder="Ingrese Autor"><br>
+          <label for="search" style="font-weight: bold;">Género: </label>
+          <input type="text" id="genre" formControlName="genre" placeholder="Ingrese Género"><br>
+          <label for="search" style="font-weight: bold;">Editorial: </label>
+          <input type="text" id="publisher" formControlName="publisher" placeholder="Ingrese Editorial"><br>
+          <div *ngIf="invalid" class="alert alert-danger" style="color:red">
+            Por favor, llena al menos un campo.
+         </div>
+
+
+          <button type="login input" class="btn btn-primary" [disabled]="!form.valid">
+            Buscar!
+          </button><br>
+
+
+        </form>
+      </div>
+
+      <div *ngIf="searched" >
+        <h3 *ngIf="books[0]==undefined">No hay resultados para la búsqueda</h3>
+
+        <a (click)="searchAgain()" style="color:#f2f2f2;text-decoration: underline;cursor: pointer;">Buscar nuevamente</a>
+
+        <table *ngIf="books[0]!==undefined">
+          <thead>
+            <tr>
+              <th>Portada</th>
+              <th>Detalles</th>
+            </tr>
+          </thead>
+
+            <tr *ngFor="let b of books; index as i" >
+              <td>  <img *ngIf="b.cover!==null" src="http://localhost:3000/api/files/downloads/cover/{{b._id}}" (click)="openBook(b._id)">
+                    <img *ngIf="b.cover==null"  src="../../assets/notCover.png" (click)="openBook(b._id)"/> <br>
+              </td>
+              <td >
+                <div style="text-align: center;">
+                  <a style="font-weight: bold;"> Título: </a><a> {{b.title}}</a><br>
+                  <a style="font-weight: bold;"> Autor: </a><a> {{b.author.name}}</a><br>
+                  <a style="font-weight: bold;"> Género: </a><a> {{b.genre.name}}</a><br>
+                  <a style="font-weight: bold;"> Editorial: </a><a>{{b.publisher.name}}</a><br>
+                  <a style="font-weight: bold;"> ------------- </a><br><br>
+                  <a (click)="openBook(b._id)" style="font-weight: bold;font-size: large;text-decoration: underline;cursor: pointer;"> Editar Libro</a>
+                </div>
+              </td><br>
+            </tr>
+        </table>
+
+
+      </div>
+
+        -----<br><br>
+        <a href="adminpanel" style="color:#f2f2f2">Volver</a>
+
+      <!-- FOOTER -->
+      <footer>
+        <p> static void ® - Grupo 19</p>
+        <p>Ing. Software 2 - UNLP - 2020</p>
+      </footer>
+    </div>
+  </body>
+  </html>

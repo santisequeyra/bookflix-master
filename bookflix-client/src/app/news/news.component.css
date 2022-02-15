@@ -1,0 +1,12 @@
+.boxed {
+  border: 2px solid #686868 ;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.boxed2 {
+  border: 2px solid #999898 ;
+  border-radius: 6px;
+  padding: 10px;
+}
+

@@ -1,0 +1,77 @@
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ayuda - Grupo 19</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.ts"></script>
+  </head>
+  <script >
+
+
+  </script>
+
+  <body>
+    <div class="wrapper">
+
+      <!-- HEADER -->
+      <header>
+        <div class="BookflixLogo">
+          <a id="logo"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+        </div>
+
+      </header>
+      <h1>Subir archivo</h1>
+       <!-- END OF HEADER -->
+       <div *ngIf="!createdPDF">
+        <form [formGroup]="form" (ngSubmit)="onCreate(form)">
+          <label for="file">Subir archivo</label>
+          <input type="file" accept=".pdf" id="file" formControlName="file" placeholder="Ingrese un archivo .pdf" (change)="changestring()">
+
+          <button [disabled]="!form.valid">
+            Subir archivo
+          </button><br>
+          <small style="color: red;" *ngIf="(!selectedPDF)&&(selected)">Por favor, seleccione un .pdf válido.</small><br>
+
+
+
+        </form>
+     </div>
+     <div *ngIf="createdPDF">
+       <a >Cargando: {{fileName}}  -  </a>
+       <a (click)="uploadAgain()" style="color:#f2f2f2;text-decoration: underline;cursor: pointer;">Cambiar archivo</a><br><br>
+
+        <form [formGroup]="form_upload" (ngSubmit)="onUpload(form_upload)">
+
+          <label for="release">   Fecha de Lanzamiento: </label>
+          <input type="date" accept=".pdf" id="release" formControlName="release" placeholder="Fecha de Lanzamiento"><br>
+
+          <label for="concealment">Fecha de vencimiento: </label>
+          <input type="date" accept=".pdf" id="concealment" formControlName="concealment" placeholder="Fecha de vencimiento"><br>
+          <div [hidden]="!form_upload.controls['concealment'].hasError('invalid')" class="alert alert-danger" style="color:red">
+            La fecha de vencimiento debe ser posterior a la fecha de Lanzamiento.
+         </div>
+          <label for="chapternumber">Capítulo Nº: </label>
+          <input type="number" id="chapternumber" formControlName="chapternumber" placeholder="Número de capítulo"><br>
+
+
+        <button [disabled]="!form_upload.valid">
+          Cargar archivo
+        </button><br>
+
+      </form>
+     </div>
+     <br><br>
+
+     <a (click)="goBack()" style="color:#f2f2f2;text-decoration: underline;cursor: pointer;">Volver</a>
+      <!-- FOOTER -->
+      <footer>
+        <p> static void ® - Grupo 19</p>
+        <p>Ing. Software 2 - UNLP - 2020</p>
+      </footer>
+    </div>
+  </body>
+  </html>

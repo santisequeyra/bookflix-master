@@ -1,0 +1,48 @@
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ayuda - Grupo 19</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.ts"></script>
+  </head>
+
+  <body>
+    <div class="wrapper">
+
+      <!-- HEADER -->
+      <header>
+        <div class="BookflixLogo">
+          <a id="logo"><img src="./assets/logo.png" alt="Logo Image" title="Bookflix Grupo 19"></a>
+        </div>
+      </header>
+       <!-- END OF HEADER -->
+       <div>
+        <h1>Ingrese ID de novedad a eliminar:</h1>
+        <form class="login-container" [formGroup]="form" (ngSubmit)="onDelete(form)">
+
+            <div class="form-group">
+            <div class="col-sm-12">
+              <label for="search" class="control-label">ID: </label>
+              <input type="text" id="id" class="form-control" formControlName="id" placeholder="Ingrese ID">
+            </div>
+            </div>
+          <button type="login input" class="btn btn-primary" [disabled]="!form.valid">
+            Eliminar novedad
+          </button><br>
+          <a href="adminpanel" style="color:#f2f2f2">Volver</a>
+
+        </form>
+     </div>
+
+      <!-- FOOTER -->
+      <footer>
+        <p> static void ® - Grupo 19</p>
+        <p>Ing. Software 2 - UNLP - 2020</p>
+      </footer>
+    </div>
+  </body>
+  </html>
